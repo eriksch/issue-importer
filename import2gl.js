@@ -114,7 +114,7 @@ function readMantisIssues() {
 function getGitLabProject() {
   log_progress("Fetching project from GitLab...");
   var url = gitlabAPIURLBase + '/projects';
-  var data = {}; //{ per_page: 100, private_token: gitlabAdminPrivateToken, sudo: gitlabSudo };
+  var data = { per_page: 100, private_token: gitlabAdminPrivateToken, sudo: gitlabSudo };
 
   return rest.get(url, {data: data}).then(function(result) {
 
@@ -126,7 +126,6 @@ function getGitLabProject() {
 
     return gitLab.project;
   }, function(error) {
-    console.log(error);
     throw new Error('Cannot get list of projects from gitlab: ' + url);
   });
 }
